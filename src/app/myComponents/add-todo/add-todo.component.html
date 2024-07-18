@@ -1,0 +1,30 @@
+<h2>Add New Task</h2>
+<form (ngSubmit)="onSubmit()">
+  <label for="title">Title</label>
+  <input type="text" id="title" [(ngModel)]="title" placeholder="Enter your task name..." name="title">
+  
+  <label for="description">Description</label>
+  <textarea id="description" [(ngModel)]="desc" rows="3" placeholder="Explain in details..." name="description"></textarea>
+  
+  <label for="due-date">Due Date</label>
+  <input type="date" id="due-date" [(ngModel)]="dueDate" name="dueDate">
+  
+  <label for="priority">Priority</label>
+  <select id="priority" [(ngModel)]="priority" name="priority">
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
+  </select>
+  
+  <label for="status">Status</label>
+  <select id="status" [(ngModel)]="status" name="status">
+    <option>Pending</option>
+    <option>Done</option>
+  </select>
+  
+  <button type="submit">Add Task</button>
+</form>
+
+
+
+

@@ -1,77 +1,11 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-   /* Set to the blue color in the image */
-    padding: 10px 20px;
-    color: white;
-}
-
-.header-left {
-    display: flex;
-    align-items: center;
-}
-
-.icon img {
-    width: 24px; /* Adjust size as needed */
-    height: 24px;
-    margin-right: 10px;
-}
-
-.title {
-    margin: 0;
-    font-size: 1.5em;
-}
-
-.header-middle {
-    display: flex;
-    align-items: center;
-}
-
-.home-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    font-size: 1.2em;
-}
-
-.home-link img {
-    width: 20px; /* Adjust size as needed */
-    height: 20px;
-    margin-right: 5px;
-}
-
-.header-right .export-btn {
-    border-radius: 8px;
-    background-color: black;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 1em;
-    cursor: pointer;
-}
-
-.header-right .export-btn:hover {
-    background-color: #333;
-}
-
-
-
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     background-color: #f4f4f9;
 }
 
 header {
-    background-color: #4C3BCF; /* Blue color */
+    background-color: #4a69bd; /* Blue color */
     padding: 20px;
     color: white;
     display: flex;
@@ -107,15 +41,15 @@ header .header-right .export-btn {
 
 .body-content {
     display: flex;
-    padding-top: 10px;
+    padding: 20px;
 }
 
 .logs {
-    width: 20%;
-    background-color: rgb(240, 240, 240);
+    width: 25%;
+    background-color: #e6e8f1;
     padding: 20px;
     border-radius: 8px;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .logs h2 {
@@ -123,18 +57,17 @@ header .header-right .export-btn {
 }
 
 .about-todo {
-    width: 80%;
+    width: 75%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
 }
 
 .create-todo,
 .todo-list {
     background-color: white;
-    padding-left: 10px;
+    padding: 20px;
     border-radius: 8px;
-    /* margin-bottom: 20px; */
+    margin-bottom: 20px;
 }
 
 .create-todo h2,
@@ -149,6 +82,7 @@ header .header-right .export-btn {
 
 .create-todo form label {
     margin-top: 10px;
+    font-weight: bold;
 }
 
 .create-todo form input,
@@ -157,20 +91,22 @@ header .header-right .export-btn {
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-size: 16px;
 }
 
 .create-todo form button {
     margin-top: 15px;
     padding: 10px;
-    background-color: #4a69bd;
+    background-color: #00A0F3;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .create-todo form button:hover {
-    background-color: #3b5998;
+    background-color: #00A0F3;
 }
 
 .todo-list label {
@@ -201,7 +137,7 @@ header .header-right .export-btn {
 }
 
 .task-item button:first-of-type {
-    background-color: #4a69bd;
+    background-color: #00A0F3;
     color: white;
 }
 
@@ -213,3 +149,59 @@ header .header-right .export-btn {
 .task-item button:hover {
     opacity: 0.8;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#description {
+    height: 100px;
+}
+
+#due-date {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(240, 240, 240);
+    height: 60px;
+}
+
+button {
+    margin-top: 10px;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #4C3BCF;
+    color: #fff;
+}
+
+textarea {
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(240, 240, 240);
+    height: 60px;
+}
+
+#title{
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(240, 240, 240);
+    height: 40px;
+}
+
+#priority {
+    height: 40px;
+}
+
+#status {
+    height: 40px;
+}
+
+.red-border {
+    border: 2px solid red;
+  }
+  
