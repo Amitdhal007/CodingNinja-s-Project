@@ -31,7 +31,7 @@ export class AppComponent {
   todos: Todo[] = [];
   localItem: string | null = null;
   @ViewChild(AddTodoComponent) addTodoComponent!: AddTodoComponent;
-  editingTodo: Todo | null = null; // Add this line
+  editingTodo: Todo | null = null;
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {
@@ -56,20 +56,20 @@ export class AppComponent {
   }
 
   editTodo(todo: Todo) {
-    this.editingTodo = todo; // Set the todo to be edited
+    this.editingTodo = todo; 
     this.addTodoComponent.fillForm(todo);
     this.scrollToAddTodoForm();
   }
 
   addTodo(todo: Todo) {
-    if (this.editingTodo) { // Check if we're editing
+    if (this.editingTodo) { 
       const index = this.todos.findIndex(t => t.currTime === this.editingTodo!.currTime);
       if (index !== -1) {
-        this.todos[index] = todo; // Update the existing todo
+        this.todos[index] = todo;
       }
-      this.editingTodo = null; // Reset the editing state
+      this.editingTodo = null;
     } else {
-      this.todos.push(todo); // Add new todo
+      this.todos.push(todo); 
     }
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('todos', JSON.stringify(this.todos));

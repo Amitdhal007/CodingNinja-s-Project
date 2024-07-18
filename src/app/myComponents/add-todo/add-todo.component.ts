@@ -14,8 +14,8 @@ export class AddTodoComponent {
   title!: string;
   desc!: string;
   dueDate!: Date;
-  priority: string = 'Low'; // Default value
-  status: string = 'Pending'; // Default value
+  priority: string = 'Low'; 
+  status: string = 'Pending'; 
   currTime!: Date;
 
   @Output() addTodo: EventEmitter<Todo> = new EventEmitter();
