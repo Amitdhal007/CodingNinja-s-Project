@@ -213,3 +213,9 @@ header .header-right .export-btn {
 .task-item button:hover {
     opacity: 0.8;
 }
+
+.todo-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

@@ -27,30 +27,31 @@
         <app-add-todo (addTodo)="addTodo($event)"></app-add-todo>
       </div>
       <div class="todo-list">
-
         <div class="todo-heading">
           <h2 class="mb-4">My Todos</h2>
 
-          <!-- <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle bg-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+              Sort By
             </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <button class="dropdown-item" type="button">Action</button>
-              <button class="dropdown-item" type="button">Another action</button>
-              <button class="dropdown-item" type="button">Something else here</button>
-            </div>
-          </div> -->
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="#" (click)="sortTodosBy('priority')">Priority</a></li>
+              <li><a class="dropdown-item" href="#" (click)="sortTodosBy('date')">Date</a></li>
+              <li><a class="dropdown-item" href="#" (click)="sortTodosBy('status')">Status</a></li>
+            </ul>
+          </div>
 
         </div>
        
         <div *ngIf="todos.length === 0; else elseBlock">No Todos to Display</div>
         <ng-template #elseBlock>
           <div *ngFor="let todo of todos">
-            <app-todo-item [todo]="todo" (todoDelete)="deleteTode($event)"></app-todo-item>
+            <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todo-item>
           </div>
         </ng-template>
       </div>
     </div>
   </div>
 </div>
+
+

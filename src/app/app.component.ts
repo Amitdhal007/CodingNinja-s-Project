@@ -39,7 +39,7 @@ export class AppComponent {
     }
   }
 
-  deleteTode(todo: Todo) {
+  deleteTodo(todo: Todo) {
     const index = this.todos.indexOf(todo);
     if (index !== -1) {
       this.todos.splice(index, 1);
@@ -63,8 +63,8 @@ export class AppComponent {
   }
 
   private convertToCSV(todos: Todo[]): string {
-    const header = ['Title', 'Description', 'Due Date', 'Priority', 'Status'];
-    const rows = todos.map(todo => [todo.title, todo.desc, todo.dueDate, todo.priority, todo.status]);
+    const header = ['currTime', 'Title', 'Description', 'Due Date', 'Priority', 'Status'];
+    const rows = todos.map(todo => [todo.currTime, todo.title, todo.desc, todo.dueDate, todo.priority, todo.status]);
 
     const csvContent = [
       header.join(','),
@@ -84,6 +84,33 @@ export class AppComponent {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+  }
+
+  sortTodosBy(criteria: string) {
+    switch (criteria) {
+      case 'priority':
+        this.todos.sort((a, b) => this.comparePriority(a.priority, b.priority));
+        break;
+      case 'date':
+        this.todos.sort((a, b) => new Date(b.currTime).getTime() - new Date(a.currTime).getTime());
+        break;
+      case 'status':
+        this.todos.sort((a, b) => this.compareStatus(a.status, b.status));
+        break;
+    }
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
+  }
+
+  private comparePriority(a: string, b: string): number {
+    const priorities = ['High', 'Medium', 'Low'];
+    return priorities.indexOf(a) - priorities.indexOf(b);
+  }
+
+  private compareStatus(a: string, b: string): number {
+    const statuses = ['Pending', 'In-Progress', 'Completed'];
+    return statuses.indexOf(a) - statuses.indexOf(b);
   }
 }
 
