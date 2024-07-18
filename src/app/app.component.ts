@@ -1,4 +1,6 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+
+
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -22,11 +24,14 @@ import { Todo } from './Todo';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
   title = 'task-manager';
-
   todos: Todo[] = [];
   localItem: string | null = null;
+  @ViewChild(AddTodoComponent) addTodoComponent!: AddTodoComponent;
+  editingTodo: Todo | null = null; // Add this line
 
   constructor(@Inject(PLATFORM_ID) private platformId: object) {
     if (isPlatformBrowser(this.platformId)) {
@@ -50,12 +55,27 @@ export class AppComponent {
     console.log(todo);
   }
 
+  editTodo(todo: Todo) {
+    this.editingTodo = todo; // Set the todo to be edited
+    this.addTodoComponent.fillForm(todo);
+    this.scrollToAddTodoForm();
+  }
+
   addTodo(todo: Todo) {
-    this.todos.push(todo);
+    if (this.editingTodo) { // Check if we're editing
+      const index = this.todos.findIndex(t => t.currTime === this.editingTodo!.currTime);
+      if (index !== -1) {
+        this.todos[index] = todo; // Update the existing todo
+      }
+      this.editingTodo = null; // Reset the editing state
+    } else {
+      this.todos.push(todo); // Add new todo
+    }
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('todos', JSON.stringify(this.todos));
     }
   }
+  
 
   exportToCSV() {
     const csvData = this.convertToCSV(this.todos);
@@ -86,7 +106,10 @@ export class AppComponent {
     document.body.removeChild(a);
   }
 
-  sortTodosBy(criteria: string) {
+  sortTodosBy(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    const criteria = selectElement.value;
+
     switch (criteria) {
       case 'priority':
         this.todos.sort((a, b) => this.comparePriority(a.priority, b.priority));
@@ -112,6 +135,11 @@ export class AppComponent {
     const statuses = ['Pending', 'In-Progress', 'Completed'];
     return statuses.indexOf(a) - statuses.indexOf(b);
   }
+
+  private scrollToAddTodoForm() {
+    const element = document.querySelector('.create-todo');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
-
-

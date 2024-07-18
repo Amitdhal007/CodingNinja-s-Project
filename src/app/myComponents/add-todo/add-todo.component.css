@@ -205,3 +205,6 @@ textarea {
     border: 2px solid red;
   }
   
+  .green-border {
+    border: 2px solid green;
+  }

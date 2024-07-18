@@ -1,9 +1,11 @@
-<div class="task-item" [ngClass]="{'red-border': isOverdue(todo)}">
+<div class="task-item" [ngClass]="{'red-border': isOverdue(todo), 'green-border': isDone(todo)}">
     <h3>{{todo.title}}</h3>
     <p id="desc">{{todo.desc}}</p>
     <p><span>Due Date: </span>{{todo.dueDate | date:'medium'}}</p>
     <p>Priority: <span>{{todo.priority}}</span></p>
     <p>Status: <span>{{todo.status}}</span></p>
-    <button>Edit Todos</button>
-    <button (click)="onClick(todo)">Delete</button>
-</div>
+    <button (click)="onEdit(todo)">Edit Task</button>
+    <button (click)="onDelete(todo)">Delete</button>
+  </div>
+  
+

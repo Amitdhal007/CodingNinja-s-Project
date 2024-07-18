@@ -12,13 +12,18 @@ import { Todo } from '../../Todo';
 export class TodoItemComponent implements OnInit {
   @Input() todo!: Todo;
   @Output() todoDelete: EventEmitter<Todo> = new EventEmitter();
+  @Output() todoEdit: EventEmitter<Todo> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void { }
 
-  onClick(todo: Todo) {
+  onDelete(todo: Todo) {
     this.todoDelete.emit(todo);
+  }
+
+  onEdit(todo: Todo) {
+    this.todoEdit.emit(todo);
   }
 
   isOverdue(todo: Todo): boolean {
@@ -26,6 +31,14 @@ export class TodoItemComponent implements OnInit {
     const currentDate = new Date(todo.currTime);
     return todo.status === 'Pending' && currentDate > dueDate;
   }
+
+  isDone(todo: Todo): boolean {
+    const dueDate = new Date(todo.dueDate);
+    const currentDate = new Date(todo.currTime);
+    return todo.status === 'Completed' && currentDate <= dueDate;
+  }
+  
 }
+
 
 

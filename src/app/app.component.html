@@ -1,3 +1,4 @@
+
 <div>
   <header class="header">
     <div class="header-left">
@@ -16,42 +17,32 @@
     <div class="logs">
       <h2>History Log</h2>
       <ul>
-        <li *ngFor="let todo of todos">
-          <app-todo-logs [todo]="todo"></app-todo-logs>
-        </li>
-      </ul>
+      <li *ngFor="let todo of todos">
+        <app-todo-logs [todo]="todo"></app-todo-logs>
+      </li>
+    </ul>
     </div>
 
     <div class="about-todo">
       <div class="create-todo">
         <app-add-todo (addTodo)="addTodo($event)"></app-add-todo>
       </div>
-      <div class="todo-list">
-        <div class="todo-heading">
-          <h2 class="mb-4">My Todos</h2>
+      <div class="todo-list my-3">
+        <h2>My Tasks</h2>
+        <label for="sort">Sort by:</label>
+        <select id="sort" (change)="sortTodosBy($event)">
+          <option value="priority">Priority</option>
+          <option value="date">Date</option>
+          <option value="status">Status</option>
+        </select>
 
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle bg-black" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-              Sort By
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" href="#" (click)="sortTodosBy('priority')">Priority</a></li>
-              <li><a class="dropdown-item" href="#" (click)="sortTodosBy('date')">Date</a></li>
-              <li><a class="dropdown-item" href="#" (click)="sortTodosBy('status')">Status</a></li>
-            </ul>
-          </div>
-
-        </div>
-       
-        <div *ngIf="todos.length === 0; else elseBlock">No Todos to Display</div>
+        <div *ngIf="todos.length === 0; else elseBlock" class="my-3"> <strong>No Todos to Display</strong></div>
         <ng-template #elseBlock>
-          <div *ngFor="let todo of todos">
-            <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)"></app-todo-item>
-          </div>
-        </ng-template>
+        <div *ngFor="let todo of todos" class="my-4">
+          <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)" (todoEdit)="editTodo($event)"></app-todo-item>
+        </div>
+      </ng-template>
       </div>
     </div>
   </div>
 </div>
-
-
